@@ -1,0 +1,33 @@
+    body{
+        background:#E2A9F3;
+        font-family:"Calibri", "Comic Sans";
+    }
+    ul {
+        margin: 40;
+        padding: 20;
+        width:600px;
+    }
+    li {
+        float: left;
+        display: block;
+        width: 650px;
+        font-size:25px;
+    }
+    h1{
+        font-size:50px;
+        color:#FFFFFF;
+    }
+    h2{
+        font-size:20px;
+    }
+    h3{
+        font-size:30px;
+        color:#FFFFFF;
+    }
+    h6 {
+        color:#FFFFFF;
+        text-indent:50px;
+        width:700px;
+        margin: auto;
+        background:#E2A9F3;
+    }

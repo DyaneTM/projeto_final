@@ -1,0 +1,3 @@
+<h3><center>Usuarios Cadastrados
+    $forall Entity pid usuario <- listarU
+        <p>#{usuarioLogin usuario} <br>
