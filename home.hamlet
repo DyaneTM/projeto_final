@@ -1,0 +1,14 @@
+<h1><center>Santos Sup Girl - Stand Up Paddle
+    <ul>
+        <li>
+            <a href=@{NoticiasR}>Noticias
+        <li>
+            <a href=@{EstiloR}>Estilo
+        <li>
+            <a href=@{CadastroR}>Cadastro
+        <li>
+            <a href=@{ListarR}>Listar
+        <li>
+            <a href=@{CadastroPranchaR}>Cadastrar Pranchas
+        <li>
+            <a href=@{ListarPranchaR}>Lista de Pranchas

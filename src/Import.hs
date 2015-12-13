@@ -6,6 +6,7 @@ import Yesod.Static
 
 pRoutes = [parseRoutes|
   /         HomeR GET
+  /static StaticR Static getStatic
   /noticias NoticiasR GET
   /estilo   EstiloR GET
   /cadastro CadastroR GET POST
@@ -17,8 +18,8 @@ pRoutes = [parseRoutes|
   /cadastroUsuario CadastroUsuarioR GET POST
   /listarUsuario ListarUsuarioR GET
   /usuario/#UsuarioId UsuarioR GET
-  /static StaticR Static getStatic
   /login LoginR GET POST
   /admin AdminR GET
 |]
 
+--usuario/UsuarioR GET

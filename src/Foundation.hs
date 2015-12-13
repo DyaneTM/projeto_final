@@ -11,7 +11,7 @@ import Database.Persist.Postgresql
     ( ConnectionPool, SqlBackend, runSqlPool, runMigration )
 
 data Pagina = Pagina { connPool :: ConnectionPool,
-                        getStatic :: Static }
+                       getStatic :: Static }
 
 staticFiles "."
 
@@ -23,7 +23,7 @@ Prancha
 Pessoa
     nome Text
     idade Int
-    salario Double
+    profissao Text
     deriving Show
 Usuario
     login Text
@@ -43,23 +43,6 @@ instance YesodPersist Pagina where
        runSqlPool f pool
 
 instance Yesod Pagina where
-    authRoute _ = Just $LoginR
-    isAuthorized LoginR _ = return Authorized
-    isAuthorized AdminR _ = isAdmin
-    isAuthorized _ _ = isUser
-
-isAdmin = do
-    mu <- lookupSession "_ID"
-    return $ case mu of
-        Nothing -> AuthenticationRequired
-        Just "admin" -> Authorized
-        Just _ -> Unauthorized "Página do Adm"
-
-isUser = do
-    mu <- lookupSession "_ID"
-    return $ case mu of
-        Nothing -> AuthenticationRequired
-        Just _ -> Authorized
 
 -- Form de alguma coisa
 type Form a = Html -> MForm  Handler (FormResult a, Widget)
