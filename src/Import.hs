@@ -21,5 +21,3 @@ pRoutes = [parseRoutes|
   /login LoginR GET POST
   /admin AdminR GET
 |]
-
---usuario/UsuarioR GET
