@@ -23,7 +23,7 @@ Prancha
 Pessoa
     nome Text
     idade Int
-    profissao Text
+    salario Double
     deriving Show
 Usuario
     login Text

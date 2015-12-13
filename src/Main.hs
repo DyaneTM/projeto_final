@@ -22,7 +22,7 @@ formPessoa :: Form Pessoa
 formPessoa = renderDivs $ Pessoa <$>
     areq textField "Nome:  " Nothing <*>
     areq intField "Idade:  " Nothing <*>
-    areq textField "Profissão" Nothing
+    areq doubleField "Salario" Nothing
 
 --Form Prancha
 
@@ -87,10 +87,21 @@ widgetHtmlEstilo = ([whamlet|
 
 -- Pagina dos Links
 
+widgetHead ::  Widget
+widgetHead = toWidgetHead [hamlet|
+<link rel="stylesheet" href=@{StaticR prj_lucius}>
+|]
+
+widgetPage :: Widget -> Text -> Widget
+widgetPage widget title = do
+    widgetHead >> $(whamletFile "header.hamlet")
+
+
+
 getHomeR :: Handler Html
 getHomeR = do
     usr <- lookupSession "_ID"
-    defaultLayout $ widgetForm $(whamletFile "home.hamlet") "Santos Sup Girl - Stand Up Paddle"
+    defaultLayout $ widgetPage $(whamletFile "home.hamlet") "Santos Sup Girl - Stand Up Paddle"
 
 getNoticiasR :: Handler Html
 getNoticiasR = defaultLayout (widgetHtmlNoticias)
@@ -123,7 +134,7 @@ getPessoaR pid = do
                  defaultLayout ([whamlet|
                      <h2><center><p>Perfil de #{pessoaNome pessoa}
                      <h2><center><p>Idade:   #{pessoaIdade pessoa}
-                     <h2><center><p>Profissao: #{pessoaProfissao pessoa}
+                     <h2><center><p>Profissao: #{pessoaSalario pessoa}
                      <h2><center><p><a href=@{HomeR}>Voltar
 
 |]>> toWidget $(luciusFile "prj.lucius"))
@@ -212,7 +223,7 @@ postCadastroPranchaR = do
 getCadastroUsuarioR :: Handler Html
 getCadastroUsuarioR = do
     (wid,enc)  <- generateFormPost formUsuario
-    defaultLayout $ widgetForm (widgetForm UsuarioR enc wid "" "Cadastrar") "Cadastrar Surfista"
+    defaultLayout $ widgetPage (widgetForm LoginR enc wid "" "Cadastrar") "Cadastrar Surfista"
 
 getUsuarioR :: UsuarioId -> Handler Html
 getUsuarioR uid = do
@@ -255,7 +266,7 @@ postCadastroUsuarioR = do
 getLoginR :: Handler Html
 getLoginR = do
     (wid,enc) <- generateFormPost formUsuario
-    defaultLayout $ widgetForm( widgetForm UsuarioR enc wid "" "Login") "Login Usuario"
+    defaultLayout $ widgetPage( widgetForm LoginR enc wid "" "Login") "Login Usuario"
 
 postLoginR :: Handler Html
 postLoginR = do
@@ -275,7 +286,7 @@ postLoginR = do
 -- Pagina Admin
 
 getAdminR :: Handler Html
-getAdminR = defaultLayout $ widgetForm [whamlet|
+getAdminR = defaultLayout $ widgetPage [whamlet|
                                 <h2><center><p>Está Página é do Admin |] "Página somente do Admin"
 
 

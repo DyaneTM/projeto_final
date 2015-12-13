@@ -5,7 +5,7 @@ import Yesod
 import Yesod.Static
 
 pRoutes = [parseRoutes|
-  /         HomeR GET
+  / HomeR GET
   /static StaticR Static getStatic
   /noticias NoticiasR GET
   /estilo   EstiloR GET
