@@ -101,7 +101,7 @@ widgetPage widget title = do
 getHomeR :: Handler Html
 getHomeR = do
     usr <- lookupSession "_ID"
-    defaultLayout $ widgetPage $(whamletFile "home.hamlet") "Santos Sup Girl - Stand Up Paddle"
+    defaultLayout $ widgetPage $(whamletFile "home.hamlet") "Bem-Vindo ao Santos Sup Girl - Stand Up Paddle"
 
 getNoticiasR :: Handler Html
 getNoticiasR = defaultLayout (widgetHtmlNoticias)
@@ -169,9 +169,9 @@ postCadastroR = do
 
 widgetFormPrancha :: Route Pagina -> Enctype -> Widget -> Text -> Widget
 widgetFormPrancha w enctype widget z = ([whamlet|
-   <h3><center>Cadastro de #{z}
-    <form method="POST" action="@{w}" enctype="#{enctype}">
-        ^{widget}
+    <h3><center>Cadastro de #{z}
+        <form method="POST" action="@{w}" enctype="#{enctype}">
+              ^{widget}
         <input type="submit" value="Cadastrar Prancha">
 
     <h2><p><a href=@{HomeR}>Voltar
@@ -182,6 +182,7 @@ getCadastroPranchaR :: Handler Html
 getCadastroPranchaR = do
                         (widget, enctype) <- generateFormPost formPrancha
                         defaultLayout $ widgetFormPrancha CadastroPranchaR enctype widget "Prancha"
+
 
 getPranchaR :: PranchaId -> Handler Html
 getPranchaR prid = do
@@ -219,6 +220,17 @@ postCadastroPranchaR = do
                     _ -> redirect CadastroPranchaR
 
 -- Pagina Usuario
+
+widgetFormUsuario :: Route Pagina -> Enctype -> Widget -> Text -> Widget
+widgetFormUsuario p enctype widget q = ([whamlet|
+    <h3><center>Cadastro de #{q}
+        <form method="POST" action="@{p}" enctype="#{enctype}">
+              ^{widget}
+              <input type="submit" valeu="Cadastrar Usuario">
+
+    <h2><p><a href=@{HomeR}>Voltar
+
+|]>> toWidget $(luciusFile "prj.lucius"))
 
 getCadastroUsuarioR :: Handler Html
 getCadastroUsuarioR = do
@@ -288,10 +300,6 @@ postLoginR = do
 getAdminR :: Handler Html
 getAdminR = defaultLayout $ widgetPage [whamlet|
                                 <h2><center><p>Está Página é do Admin |] "Página somente do Admin"
-
-
-
-
 
 
 

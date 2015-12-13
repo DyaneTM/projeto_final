@@ -50,4 +50,5 @@ type Form a = Html -> MForm  Handler (FormResult a, Widget)
 {- Internilizacao - Framework Skeleto -}
 instance RenderMessage Pagina FormMessage where
   renderMessage _ _ = defaultFormMessage
+  
 
